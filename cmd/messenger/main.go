@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"nukitbot.github.io/pkg/common"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 		je := json.NewDecoder(r.Body)
 		err := je.Decode(&v)
 		if err != nil {
-			log.Fatalf("Some problem occured parsing request body: %v", err)
+			log.Fatalf("Some problem occured parsing request body: %v\n", err)
 		}
 		log.Printf("Got request: %v\n", v)
 
@@ -35,5 +36,11 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
-	http.ListenAndServe(":1337", r)
+	addr := ":" + common.GetEnv("PORT", "80")
+	log.Printf("Starting server at %s\n", addr)
+
+	err := http.ListenAndServe(addr, r)
+	if err != nil {
+		log.Fatalf("Failed to start the server: %v\n", err)
+	}
 }
