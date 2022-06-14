@@ -1,1 +1,1 @@
-./bin/messenger
+web: ./bin/messenger
