@@ -34,6 +34,7 @@ func main() {
 		)
 
 		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(q.Get("hub.challenge")))
 	})
 
 	addr := ":" + os.Getenv("PORT")
