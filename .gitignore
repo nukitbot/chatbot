@@ -1,3 +1,4 @@
+.env
 .dbeaver-data-sources*.xml
 *.exe
 *.exe~
