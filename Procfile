@@ -1,1 +1,1 @@
-web: go run ./cmd/messenger/main.go
+./bin/messenger
