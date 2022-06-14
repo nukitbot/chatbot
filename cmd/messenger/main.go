@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"nukitbot.github.io/pkg/common"
 )
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
-	addr := ":" + common.GetEnv("PORT", "80")
+	addr := ":" + os.Getenv("PORT")
 	log.Printf("Starting server at %s\n", addr)
 
 	err := http.ListenAndServe(addr, r)
